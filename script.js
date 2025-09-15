@@ -1,29 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
     const pages = document.querySelectorAll('.card-page');
+    const startButton = document.getElementById('start-button');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    const navButtons = document.querySelector('.navigation-buttons');
     const music = document.getElementById('background-music');
     const musicControl = document.getElementById('music-control');
     let currentPageIndex = 0;
 
-    const navigateToNextPage = () => {
-        if (currentPageIndex < pages.length - 1) {
-            pages[currentPageIndex].classList.remove('active');
-            currentPageIndex++;
-            pages[currentPageIndex].classList.add('active');
+    const updateUI = () => {
+        pages.forEach((page, index) => {
+            page.classList.remove('active');
+            if (index === currentPageIndex) {
+                page.classList.add('active');
+            }
+        });
+
+        // Show/hide navigation buttons
+        if (currentPageIndex > 0) {
+            navButtons.classList.add('active');
+        } else {
+            navButtons.classList.remove('active');
         }
     };
 
-    // Auto-advance pages
-    setTimeout(() => {
-        navigateToNextPage();
-        setTimeout(() => {
-            navigateToNextPage();
-            setTimeout(() => {
-                navigateToNextPage();
-            }, 6000); // 6 seconds for family details
-        }, 8000); // 8 seconds for event details
-    }, 4000); // 4 seconds for intro
+    const navigate = (direction) => {
+        let newIndex = currentPageIndex + direction;
+        if (newIndex >= 0 && newIndex < pages.length) {
+            currentPageIndex = newIndex;
+            updateUI();
+        }
+    };
 
-    // Music control
+    startButton.addEventListener('click', () => {
+        navigate(1);
+    });
+
+    nextButton.addEventListener('click', () => {
+        navigate(1);
+    });
+
+    prevButton.addEventListener('click', () => {
+        navigate(-1);
+    });
+
     musicControl.addEventListener('click', () => {
         if (music.paused) {
             music.play();
@@ -40,4 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
             music.play().catch(e => console.log('Autoplay failed:', e));
         }
     }, { once: true });
+
+    updateUI();
 });
