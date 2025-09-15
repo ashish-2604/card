@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smita & Gulshan's Engagement</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="card-container">
+        <audio id="background-music" loop>
+            <source src="assets/bg-music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button id="music-control">
+            <span id="music-icon">🎵</span>
+        </button>
+
+        <div id="intro" class="card-page active">
+            <img src="assets/ganesha.png" alt="Lord Ganesha" class="ganesha-img">
+            <p class="ganesh-mantra">Shree Ganeshay Namah</p>
+            <button id="start-button">Click to Enter</button>
+        </div>
+
+        <div id="event-details" class="card-page">
+            <div class="content-wrapper">
+                <p class="invitation-text">YOU ARE INVITED TO THE</p>
+                <h2 class="event-title">ENGAGEMENT CEREMONY</h2>
+                <p class="honoring-text">HONORING</p>
+                <h1 class="couple-names">Smita & Gulshan</h1>
+                <div class="date-time-venue">
+                    <p class="date-month">OCTOBER</p>
+                    <p class="date-day">12</p>
+                    <p class="date-year">2025</p>
+                    <p class="time">SUNDAY | 2:00 PM</p>
+                    <p class="venue">at</p>
+                    <p class="venue-name">RAMJI UTSAV HALL</p>
+                    <p class="venue-address">ASHANAGAR | BIHAR SHARIF</p>
+                </div>
+            </div>
+            <img src="assets/couple-1.png" alt="Couple Illustration" class="couple-illustration">
+        </div>
+
+        <div id="family-details" class="card-page">
+            <div class="content-wrapper">
+                <h3 class="person-name">Er. Gulshan</h3>
+                <p class="relation">S/O</p>
+                <p class="parents">MRS. PINKI DEVI<br>&<br>MR. SANJAY KUMAR</p>
+                <p class="with">with</p>
+                <h3 class="person-name">Er. Smita</h3>
+                <p class="relation">D/O</p>
+                <p class="parents">MRS. RENU KUMARI<br>&<br>MR. SHAILENDRA KUMAR VERMA</p>
+            </div>
+        </div>
+
+        <div id="save-the-date" class="card-page">
+            <div class="content-wrapper">
+                <img src="assets/couple-2.png" alt="Couple Illustration" class="save-the-date-img">
+                <h1 class="save-date-text">Save the Date</h1>
+                <p class="save-date-desc">We look forward to celebrating this special occasion with you and creating cherished memories.</p>
+            </div>
+        </div>
+
+        <div class="navigation-buttons">
+            <button id="prev-button" class="nav-button">❮</button>
+            <button id="next-button" class="nav-button">❯</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
