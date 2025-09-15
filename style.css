@@ -1,3 +1,55 @@
+:root {
+    --primary-color: #b58d6f;
+    --text-color: #5d4037;
+    --bg-color: #f8f5f0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+.card-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-image: url('assets/background-texture.png');
+    background-size: cover;
+    background-position: center;
+    animation: background-zoom 20s infinite alternate, rotate3D 30s infinite alternate;
+}
+
+.card-page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease-in-out;
+}
+
+.card-page.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.content-wrapper {
+    animation: fadeIn 1.5s forwards;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Button Styles */
 #start-button, .navigation-buttons button {
     background: rgba(255, 255, 255, 0.7);
     border: 1px solid var(--primary-color);
@@ -15,6 +67,7 @@
     color: #fff;
 }
 
+/* Navigation Buttons Container */
 .navigation-buttons {
     position: fixed;
     bottom: 20px;
@@ -31,4 +84,207 @@
 .navigation-buttons.active {
     opacity: 1;
     pointer-events: auto;
+}
+
+/* Music Control Button */
+#music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#music-icon {
+    font-size: 20px;
+}
+
+/* Animations */
+@keyframes background-zoom {
+    from { transform: scale(1.0); }
+    to { transform: scale(1.1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rotateIn {
+    from { opacity: 0; transform: scale(0.5) rotate(-90deg); }
+    to { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes rotate3D {
+    from { transform: rotate3d(0.5, 0.5, 0, 0deg); }
+    to { transform: rotate3d(0.5, 0.5, 0, 2deg); }
+}
+
+/* Decorative Borders */
+.decorative-border-top, .decorative-border-bottom {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.decorative-border-top {
+    top: -20px;
+    left: 0;
+    transform: translateY(0);
+}
+
+.decorative-border-bottom {
+    bottom: -20px;
+    left: 0;
+    transform: translateY(0);
+}
+
+/* Animations for borders */
+@keyframes slideInDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+#intro.active ~ .decorative-border-top {
+    animation: slideInDown 1s ease-out forwards;
+}
+
+#intro.active ~ .decorative-border-bottom {
+    animation: slideInUp 1s ease-out forwards;
+}
+
+/* Falling Flowers/Crackers Effect */
+.falling-flowers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.falling-flower {
+    position: absolute;
+    background-color: #ffc0cb;
+    border-radius: 50%;
+    opacity: 0;
+    animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Page-specific styles and animations */
+#intro {
+    padding-top: 20vh;
+}
+.ganesha-img {
+    width: 200px;
+    animation: rotateIn 2s forwards;
+}
+.ganesh-mantra {
+    font-size: 1.5rem;
+    font-family: 'Great Vibes', cursive;
+    margin-top: 10px;
+    animation: fadeIn 2s 1s forwards;
+}
+#start-button {
+    margin-top: 20px;
+    animation: fadeIn 2s 2s forwards;
+}
+
+#event-details .content-wrapper, #family-details .content-wrapper, #save-the-date .content-wrapper {
+    animation: none;
+}
+
+#event-details.active .content-wrapper, #family-details.active .content-wrapper, #save-the-date.active .content-wrapper {
+    animation: fadeIn 1.5s forwards;
+}
+
+.event-title, .honoring-text, .couple-names, .date-time-venue p, .person-name, .relation, .parents {
+    animation: slideInUp 1s ease-out forwards;
+    opacity: 0;
+}
+
+#event-details.active .event-title {
+    animation-delay: 0.2s;
+}
+#event-details.active .honoring-text {
+    animation-delay: 0.4s;
+}
+#event-details.active .couple-names {
+    animation-delay: 0.6s;
+}
+#event-details.active .date-time-venue {
+    animation-delay: 0.8s;
+}
+
+#family-details.active .person-name {
+    animation-delay: 0.2s;
+}
+#family-details.active .relation {
+    animation-delay: 0.4s;
+}
+#family-details.active .parents {
+    animation-delay: 0.6s;
+}
+#family-details.active .with {
+    animation-delay: 0.8s;
+}
+
+.couple-illustration {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-width: 400px;
+    animation: fadeInUp 2s 0.5s forwards;
+    z-index: -1;
+}
+
+#family-details .person-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+#save-the-date .save-the-date-img {
+    width: 250px;
+    margin-bottom: 20px;
+    animation: fadeIn 2s forwards;
+}
+
+#save-the-date .save-date-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.5rem; }
+    .couple-illustration { width: 90%; }
+    .ganesha-img { width: 150px; }
 }
